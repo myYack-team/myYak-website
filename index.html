@@ -3,131 +3,548 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>마이약(MyYak) - 복약 관리 앱</title>
+    <title>마이약(MyYak) - 스마트 복약 관리</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
+        :root {
+            --primary: #4F46E5;
+            --primary-light: #818CF8;
+            --bg-dark: #0F172A;
+            --bg-card: #1E293B;
+            --text-primary: #F8FAFC;
+            --text-secondary: #94A3B8;
+            --accent-green: #10B981;
+            --accent-orange: #F59E0B;
+            --accent-pink: #EC4899;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(180deg, #1a1a2e 0%, var(--bg-dark) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.15) 0%, transparent 70%);
+            top: -200px;
+            right: -200px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(79, 70, 229, 0.2);
+            border: 1px solid rgba(79, 70, 229, 0.3);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            color: var(--primary-light);
+            margin-bottom: 24px;
+        }
+
+        .hero-badge::before {
+            content: '💊';
+        }
+
+        .hero h1 {
+            font-size: clamp(40px, 8vw, 72px);
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(18px, 3vw, 24px);
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 60px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-light);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 4px;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 120px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-tag {
+            color: var(--primary-light);
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(28px, 5vw, 42px);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-desc {
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 32px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 16px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-        }
-        .container {
-            background: white;
-            border-radius: 20px;
-            padding: 60px 40px;
-            max-width: 600px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-        }
-        .logo {
-            font-size: 48px;
+            font-size: 28px;
             margin-bottom: 20px;
         }
-        h1 {
-            color: #333;
-            font-size: 32px;
-            margin-bottom: 10px;
+
+        .feature-icon.scan { background: rgba(16, 185, 129, 0.15); }
+        .feature-icon.alarm { background: rgba(245, 158, 11, 0.15); }
+        .feature-icon.history { background: rgba(79, 70, 229, 0.15); }
+        .feature-icon.supplement { background: rgba(236, 72, 153, 0.15); }
+        .feature-icon.family { background: rgba(6, 182, 212, 0.15); }
+        .feature-icon.drug { background: rgba(168, 85, 247, 0.15); }
+
+        .feature-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
         }
-        .subtitle {
-            color: #667eea;
-            font-size: 18px;
-            margin-bottom: 30px;
+
+        .feature-desc {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.7;
         }
-        .description {
-            color: #666;
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 40px;
+
+        /* How it works */
+        .how-it-works {
+            padding: 120px 20px;
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #1a1a2e 100%);
         }
-        .features {
+
+        .steps-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .step {
             display: flex;
+            align-items: flex-start;
+            gap: 32px;
+            margin-bottom: 48px;
+            position: relative;
+        }
+
+        .step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: 24px;
+            top: 60px;
+            width: 2px;
+            height: calc(100% - 20px);
+            background: linear-gradient(180deg, var(--primary), transparent);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
             justify-content: center;
-            gap: 30px;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
+            font-size: 20px;
+            font-weight: 700;
+            flex-shrink: 0;
         }
-        .feature {
-            text-align: center;
-        }
-        .feature-icon {
-            font-size: 32px;
+
+        .step-content h3 {
+            font-size: 22px;
+            font-weight: 600;
             margin-bottom: 8px;
         }
-        .feature-text {
-            color: #666;
-            font-size: 14px;
-        }
-        .contact {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 20px;
-            margin-top: 30px;
-        }
-        .contact-title {
-            color: #333;
+
+        .step-content p {
+            color: var(--text-secondary);
             font-size: 16px;
-            margin-bottom: 10px;
         }
-        .contact-email {
-            color: #667eea;
+
+        /* Problem Section */
+        .problem {
+            padding: 120px 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 60px;
+        }
+
+        .problem-item {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .problem-item .emoji {
+            font-size: 40px;
+            margin-bottom: 16px;
+        }
+
+        .problem-item p {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 120px 20px;
+            text-align: center;
+            background: var(--bg-card);
+        }
+
+        .cta h2 {
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .cta p {
+            color: var(--text-secondary);
+            margin-bottom: 40px;
             font-size: 18px;
+        }
+
+        .store-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .store-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--bg-dark);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 14px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .store-btn:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        .store-btn .icon {
+            font-size: 24px;
+        }
+
+        .store-btn .text {
+            text-align: left;
+        }
+
+        .store-btn .text small {
+            font-size: 11px;
+            color: var(--text-secondary);
+            display: block;
+        }
+
+        .store-btn .text span {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .footer-contact {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .footer-contact a {
+            color: var(--primary-light);
             text-decoration: none;
         }
-        .contact-email:hover {
-            text-decoration: underline;
-        }
-        .footer {
-            margin-top: 30px;
-            color: #999;
+
+        .footer-copyright {
+            color: var(--text-secondary);
             font-size: 14px;
+            margin-top: 24px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-stats {
+                gap: 32px;
+            }
+
+            .step {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .step:not(:last-child)::after {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">💊</div>
-        <h1>마이약 (MyYak)</h1>
-        <p class="subtitle">당신의 건강한 복약 습관을 위한 파트너</p>
-
-        <p class="description">
-            마이약은 처방약과 영양제의 복용 일정을 관리하고,<br>
-            알림을 통해 규칙적인 복약 습관을 도와주는 앱입니다.
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-badge">복약 관리의 새로운 기준</div>
+        <h1>약 먹을 시간,<br><span>마이약</span>이 알려드려요</h1>
+        <p class="hero-subtitle">
+            처방전 스캔 한 번으로 복약 일정 자동 등록.<br>
+            놓치기 쉬운 약 복용을 스마트하게 관리하세요.
         </p>
-
-        <div class="features">
-            <div class="feature">
-                <div class="feature-icon">📸</div>
-                <div class="feature-text">처방전 스캔</div>
+        <div class="hero-stats">
+            <div class="stat-item">
+                <div class="stat-number">23,000+</div>
+                <div class="stat-label">등록된 의약품</div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">⏰</div>
-                <div class="feature-text">복약 알림</div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">무료 이용</div>
             </div>
-            <div class="feature">
-                <div class="feature-icon">📊</div>
-                <div class="feature-text">복약 기록</div>
-            </div>
-            <div class="feature">
-                <div class="feature-icon">💚</div>
-                <div class="feature-text">영양제 관리</div>
+            <div class="stat-item">
+                <div class="stat-number">3초</div>
+                <div class="stat-label">처방전 스캔</div>
             </div>
         </div>
+    </section>
 
-        <div class="contact">
-            <p class="contact-title">문의 및 지원</p>
-            <a href="mailto:myyak.app@gmail.com" class="contact-email">myyak.app@gmail.com</a>
+    <!-- Problem -->
+    <section class="problem">
+        <div class="section-header">
+            <div class="section-tag">Problem</div>
+            <h2 class="section-title">이런 경험 있으신가요?</h2>
         </div>
+        <div class="problem-grid">
+            <div class="problem-item">
+                <div class="emoji">😰</div>
+                <p>"아까 약 먹었나..?"<br>매번 헷갈리는 복약 여부</p>
+            </div>
+            <div class="problem-item">
+                <div class="emoji">📝</div>
+                <p>처방전 보고 약 이름<br>일일이 검색하기 귀찮아요</p>
+            </div>
+            <div class="problem-item">
+                <div class="emoji">👴</div>
+                <p>부모님 약 챙겨드리기<br>멀리서도 확인하고 싶어요</p>
+            </div>
+            <div class="problem-item">
+                <div class="emoji">💊</div>
+                <p>영양제까지 같이<br>관리할 수 없을까?</p>
+            </div>
+        </div>
+    </section>
 
-        <p class="footer">© 2025 MyYak Team. All rights reserved.</p>
-    </div>
+    <!-- Features -->
+    <section class="features">
+        <div class="section-header">
+            <div class="section-tag">Features</div>
+            <h2 class="section-title">마이약이 해결해드려요</h2>
+            <p class="section-desc">복잡한 복약 관리를 심플하게. 필요한 기능만 담았습니다.</p>
+        </div>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <div class="feature-icon scan">📸</div>
+                <h3 class="feature-title">처방전 스캔</h3>
+                <p class="feature-desc">처방전을 카메라로 찍으면 AI가 자동으로 약 정보를 인식하고 복약 일정을 등록해드려요.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon alarm">⏰</div>
+                <h3 class="feature-title">복약 알림</h3>
+                <p class="feature-desc">아침, 점심, 저녁 원하는 시간에 푸시 알림으로 약 먹을 시간을 알려드려요. 다시 알림 기능도 있어요.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon history">📊</div>
+                <h3 class="feature-title">복약 기록</h3>
+                <p class="feature-desc">캘린더에서 복약 이력을 한눈에 확인하세요. 얼마나 잘 챙겨먹었는지 통계도 볼 수 있어요.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon drug">💉</div>
+                <h3 class="feature-title">의약품 정보</h3>
+                <p class="feature-desc">식약처 공공데이터 기반 23,000개 이상의 의약품 정보를 제공해요. 효능, 부작용까지 확인하세요.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon supplement">💚</div>
+                <h3 class="feature-title">영양제 관리</h3>
+                <p class="feature-desc">처방약 뿐만 아니라 영양제도 함께 관리하세요. 직접 등록하고 다른 사람과 공유할 수 있어요.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon family">👨‍👩‍👧</div>
+                <h3 class="feature-title">가족 연결 (예정)</h3>
+                <p class="feature-desc">부모님의 복약 현황을 내 앱에서 확인하세요. 멀리 떨어져 있어도 건강을 챙길 수 있어요.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section class="how-it-works">
+        <div class="section-header">
+            <div class="section-tag">How it works</div>
+            <h2 class="section-title">3단계로 시작하세요</h2>
+        </div>
+        <div class="steps-container">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>처방전을 촬영하세요</h3>
+                    <p>병원이나 약국에서 받은 처방전을 카메라로 찍어주세요. AI가 약 이름과 복용 정보를 자동으로 인식해요.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>알림 시간을 설정하세요</h3>
+                    <p>아침, 점심, 저녁 언제 알림을 받을지 설정해주세요. 기본 시간이 설정되어 있어 바로 사용해도 돼요.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>알림이 오면 체크하세요</h3>
+                    <p>복약 시간이 되면 알림이 와요. 약을 먹고 체크하면 기록이 저장되고, 나중에 히스토리에서 확인할 수 있어요.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <h2>지금 바로 시작하세요</h2>
+        <p>복잡한 가입 절차 없이, 카카오 로그인으로 3초 만에 시작</p>
+        <div class="store-buttons">
+            <a href="#" class="store-btn">
+                <span class="icon">▶</span>
+                <div class="text">
+                    <small>GET IT ON</small>
+                    <span>Google Play</span>
+                </div>
+            </a>
+            <a href="#" class="store-btn">
+                <span class="icon">🍎</span>
+                <div class="text">
+                    <small>Download on the</small>
+                    <span>App Store</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">마이약 MyYak</div>
+        <p class="footer-contact">
+            문의: <a href="mailto:myyak.app@gmail.com">myyak.app@gmail.com</a>
+        </p>
+        <p class="footer-copyright">© 2025 MyYak Team. All rights reserved.</p>
+    </footer>
 </body>
 </html>
