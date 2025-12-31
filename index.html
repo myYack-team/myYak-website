@@ -328,6 +328,16 @@
             border-color: var(--primary);
         }
 
+        .store-btn.coming-soon {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .store-btn.coming-soon:hover {
+            background: var(--bg-dark);
+            border-color: rgba(255,255,255,0.1);
+        }
+
         .store-btn .icon {
             font-size: 24px;
         }
@@ -404,7 +414,7 @@
         </p>
         <div class="hero-stats">
             <div class="stat-item">
-                <div class="stat-number">23,000+</div>
+                <div class="stat-number">43,000+</div>
                 <div class="stat-label">등록된 의약품</div>
             </div>
             <div class="stat-item">
@@ -470,7 +480,7 @@
             <div class="feature-card">
                 <div class="feature-icon drug">💉</div>
                 <h3 class="feature-title">의약품 정보</h3>
-                <p class="feature-desc">식약처 공공데이터 기반 23,000개 이상의 의약품 정보를 제공해요. 효능, 부작용까지 확인하세요.</p>
+                <p class="feature-desc">식약처 공공데이터 기반 43,000개 이상의 의약품 정보를 제공해요. 효능, 부작용까지 확인하세요.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon supplement">💚</div>
@@ -528,13 +538,13 @@
                     <span>Google Play</span>
                 </div>
             </a>
-            <a href="#" class="store-btn">
+            <div class="store-btn coming-soon">
                 <span class="icon">🍎</span>
                 <div class="text">
-                    <small>Download on the</small>
+                    <small>Coming Soon</small>
                     <span>App Store</span>
                 </div>
-            </a>
+            </div>
         </div>
     </section>
 
