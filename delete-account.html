@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계정 삭제 안내 - 마이약 MyYak</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text: #1f2937;
+            --text-secondary: #6b7280;
+            --bg: #ffffff;
+            --bg-section: #f8fafc;
+            --border: #e5e7eb;
+            --accent: #eff6ff;
+            --danger: #dc2626;
+            --danger-light: #fef2f2;
+            --danger-border: #fecaca;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .back-btn {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--danger) 0%, #b91c1c 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .hero .subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        /* App Info Box */
+        .app-info-box {
+            background: var(--accent);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 24px 32px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .app-info-box .app-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        .app-info-box .developer {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        /* Section */
+        section {
+            margin-bottom: 48px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2 .number {
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 17px;
+            font-weight: 600;
+            color: var(--text);
+            margin: 24px 0 16px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        /* Steps Box - 눈에 띄게 표시 */
+        .steps-box {
+            background: var(--accent);
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 28px 32px;
+            margin: 24px 0;
+        }
+
+        .steps-box h3 {
+            color: var(--primary);
+            margin: 0 0 20px 0;
+            font-size: 18px;
+        }
+
+        .step-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .step-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 16px;
+            padding: 12px 16px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .step-list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .step-number {
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            margin-right: 14px;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-content strong {
+            color: var(--text);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .step-content span {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Alternative Box */
+        .alternative-box {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 32px;
+            margin: 24px 0;
+        }
+
+        .alternative-box h3 {
+            margin: 0 0 12px 0;
+        }
+
+        .alternative-box a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .alternative-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* Data Table */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px;
+        }
+
+        th, td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        th {
+            background: var(--bg-section);
+            color: var(--text);
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        td {
+            color: var(--text-secondary);
+            font-size: 15px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .badge-delete {
+            background: var(--danger-light);
+            color: var(--danger);
+        }
+
+        .badge-retain {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* Warning Box */
+        .warning-box {
+            background: var(--danger-light);
+            border: 1px solid var(--danger-border);
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+        }
+
+        .warning-box h4 {
+            color: var(--danger);
+            font-size: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .warning-box ul {
+            color: #991b1b;
+            padding-left: 20px;
+            margin: 0;
+        }
+
+        .warning-box li {
+            margin-bottom: 8px;
+        }
+
+        .warning-box li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+
+        .info-box p {
+            margin-bottom: 8px;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Contact Box */
+        .contact-box {
+            background: var(--accent);
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 24px 32px;
+            text-align: center;
+        }
+
+        .contact-box h3 {
+            color: var(--primary);
+            margin: 0 0 8px 0;
+        }
+
+        .contact-box a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-section);
+            border-top: 1px solid var(--border);
+            padding: 32px 20px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer-text a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .footer-links {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .app-info-box,
+            .steps-box,
+            .alternative-box {
+                padding: 20px;
+            }
+
+            .step-list li {
+                padding: 12px;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            .contact-box {
+                padding: 20px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">마이약 MyYak</a>
+            <a href="index.html" class="back-btn">
+                <span>&larr;</span> 메인으로
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <div class="hero">
+        <h1>계정 삭제 안내</h1>
+        <p class="subtitle">Account Deletion Information</p>
+    </div>
+
+    <!-- Content -->
+    <div class="container">
+        <!-- App Info - Google Play 요구사항: 앱/개발자 이름 표시 -->
+        <div class="app-info-box">
+            <div class="app-name">마이약 MyYak</div>
+            <div class="developer">개발자: MyYak Team (myyak.app@gmail.com)</div>
+        </div>
+
+        <!-- Section 1: 계정 삭제 방법 - Google Play 요구사항: 눈에 띄게 표시 -->
+        <section>
+            <h2><span class="number">1</span>계정 삭제 방법</h2>
+            <p>마이약(MyYak) 계정과 모든 관련 데이터를 삭제하려면 아래 방법 중 하나를 선택하세요.</p>
+
+            <!-- 방법 1: 앱 내 삭제 - 눈에 띄게 표시 -->
+            <div class="steps-box">
+                <h3>방법 1: 앱 내에서 직접 삭제 (권장)</h3>
+                <ol class="step-list">
+                    <li>
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <strong>마이약 앱 실행</strong>
+                            <span>앱을 열고 로그인합니다</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <strong>내 정보 탭 선택</strong>
+                            <span>화면 하단의 '내 정보' 탭을 터치합니다</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <strong>개인정보 보호 메뉴 선택</strong>
+                            <span>'개인정보 보호' 메뉴를 터치합니다</span>
+                        </div>
+                    </li>
+                    <li>
+                        <span class="step-number">4</span>
+                        <div class="step-content">
+                            <strong>회원 탈퇴 선택</strong>
+                            <span>'회원 탈퇴' 버튼을 터치하고 확인 메시지에 동의합니다</span>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+
+            <!-- 방법 2: 이메일 요청 -->
+            <div class="alternative-box">
+                <h3>방법 2: 이메일로 삭제 요청</h3>
+                <p>앱에 접근할 수 없는 경우, 아래 이메일로 계정 삭제를 요청하실 수 있습니다.</p>
+                <p>
+                    <strong>이메일:</strong> <a href="mailto:myyak.app@gmail.com?subject=[계정삭제요청] 마이약 회원탈퇴">myyak.app@gmail.com</a>
+                </p>
+                <p style="color: var(--text-secondary); font-size: 14px; margin-bottom: 0;">
+                    * 본인 확인을 위해 가입 시 사용한 카카오 계정 이메일 또는 닉네임을 함께 알려주세요.<br>
+                    * 요청 확인 후 영업일 기준 3일 이내에 처리됩니다.
+                </p>
+            </div>
+        </section>
+
+        <!-- Section 2: 삭제되는 데이터 - Google Play 요구사항: 데이터 유형 및 보관 기간 -->
+        <section>
+            <h2><span class="number">2</span>삭제되는 데이터</h2>
+            <p>계정 삭제 시 다음 데이터가 처리됩니다.</p>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>데이터 유형</th>
+                            <th>처리 방식</th>
+                            <th>보관 기간</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>프로필 정보</strong><br><span style="font-size: 13px; color: var(--text-secondary);">닉네임, 프로필 이미지, 이메일</span></td>
+                            <td><span class="badge badge-delete">즉시 삭제</span></td>
+                            <td>삭제 요청 즉시</td>
+                        </tr>
+                        <tr>
+                            <td><strong>카카오 계정 연동 정보</strong><br><span style="font-size: 13px; color: var(--text-secondary);">카카오 계정 고유 ID</span></td>
+                            <td><span class="badge badge-delete">즉시 삭제</span></td>
+                            <td>삭제 요청 즉시</td>
+                        </tr>
+                        <tr>
+                            <td><strong>복약 기록</strong><br><span style="font-size: 13px; color: var(--text-secondary);">등록한 약물, 복용 기록, 복약 일정</span></td>
+                            <td><span class="badge badge-delete">즉시 삭제</span></td>
+                            <td>삭제 요청 즉시</td>
+                        </tr>
+                        <tr>
+                            <td><strong>영양제 정보</strong><br><span style="font-size: 13px; color: var(--text-secondary);">등록한 영양제, 복용 기록</span></td>
+                            <td><span class="badge badge-delete">즉시 삭제</span></td>
+                            <td>삭제 요청 즉시</td>
+                        </tr>
+                        <tr>
+                            <td><strong>알림 설정</strong><br><span style="font-size: 13px; color: var(--text-secondary);">복약 알림 시간, FCM 토큰</span></td>
+                            <td><span class="badge badge-delete">즉시 삭제</span></td>
+                            <td>삭제 요청 즉시</td>
+                        </tr>
+                        <tr>
+                            <td><strong>서비스 이용 기록</strong><br><span style="font-size: 13px; color: var(--text-secondary);">접속 로그, 기기 정보</span></td>
+                            <td><span class="badge badge-retain">법적 보관</span></td>
+                            <td>통신비밀보호법에 따라 3개월</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="info-box">
+                <p><strong>참고:</strong> 서비스 이용 기록(접속 로그)은 통신비밀보호법에 따라 3개월간 보관 후 자동 삭제됩니다. 이 기간 동안 해당 정보는 법적 요청이 있는 경우에만 제공됩니다.</p>
+            </div>
+        </section>
+
+        <!-- Section 3: 주의사항 -->
+        <section>
+            <h2><span class="number">3</span>주의사항</h2>
+
+            <div class="warning-box">
+                <h4>&#9888; 계정 삭제 전 꼭 확인하세요</h4>
+                <ul>
+                    <li>계정 삭제 후에는 <strong>복구가 불가능</strong>합니다.</li>
+                    <li>모든 복약 기록과 알림 설정이 <strong>영구적으로 삭제</strong>됩니다.</li>
+                    <li>삭제된 데이터는 어떤 방법으로도 복원할 수 없습니다.</li>
+                    <li>동일한 카카오 계정으로 재가입하더라도 이전 데이터는 복원되지 않습니다.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 4: 문의하기 -->
+        <section>
+            <h2><span class="number">4</span>문의하기</h2>
+            <p>계정 삭제와 관련하여 궁금한 점이 있으시면 언제든지 문의해 주세요.</p>
+
+            <div class="contact-box">
+                <h3>마이약 고객지원</h3>
+                <p>이메일: <a href="mailto:myyak.app@gmail.com">myyak.app@gmail.com</a></p>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">마이약 MyYak</div>
+        <p class="footer-text">
+            문의: <a href="mailto:myyak.app@gmail.com">myyak.app@gmail.com</a>
+        </p>
+        <div class="footer-links">
+            <a href="privacy.html">개인정보처리방침</a>
+            <a href="terms.html">이용약관</a>
+        </div>
+        <p class="footer-text" style="margin-top: 16px;">
+            &copy; 2024 MyYak. All rights reserved.
+        </p>
+    </footer>
+</body>
+</html>

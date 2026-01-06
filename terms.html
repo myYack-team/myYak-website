@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이용약관 - 마이약 MyYak</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --text: #1f2937;
+            --text-secondary: #6b7280;
+            --bg: #ffffff;
+            --bg-section: #f8fafc;
+            --border: #e5e7eb;
+            --accent: #eff6ff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* Header */
+        .header {
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            padding: 16px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .back-btn {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .hero .effective-date {
+            font-size: 15px;
+            opacity: 0.9;
+        }
+
+        /* Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 80px;
+        }
+
+        /* Notice Box */
+        .notice-box {
+            background: var(--accent);
+            border-left: 4px solid var(--primary);
+            padding: 20px 24px;
+            margin-bottom: 40px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .notice-box p {
+            color: var(--text);
+            font-size: 15px;
+            margin: 0;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px 32px;
+            margin-bottom: 48px;
+        }
+
+        .toc-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .toc-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 8px;
+        }
+
+        .toc-list a {
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 15px;
+            display: block;
+            padding: 4px 0;
+        }
+
+        .toc-list a:hover {
+            text-decoration: underline;
+        }
+
+        /* Section */
+        section {
+            margin-bottom: 48px;
+            scroll-margin-top: 80px;
+        }
+
+        h2 {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2 .number {
+            background: var(--primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text);
+            margin: 24px 0 12px;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        ul, ol {
+            color: var(--text-secondary);
+            padding-left: 24px;
+            margin-bottom: 16px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        li strong {
+            color: var(--text);
+        }
+
+        /* Info Box */
+        .info-box {
+            background: var(--bg-section);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+
+        .info-box p {
+            margin-bottom: 8px;
+        }
+
+        .info-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Contact Box */
+        .contact-box {
+            background: var(--accent);
+            border: 1px solid #bfdbfe;
+            border-radius: 12px;
+            padding: 24px 32px;
+            text-align: center;
+        }
+
+        .contact-box h3 {
+            color: var(--primary);
+            margin: 0 0 8px 0;
+        }
+
+        .contact-box a {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .contact-box a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-section);
+            border-top: 1px solid var(--border);
+            padding: 32px 20px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .footer-text {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .footer-text a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .footer-links {
+            margin-top: 16px;
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .hero {
+                padding: 40px 20px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+
+            .toc {
+                padding: 20px;
+            }
+
+            .toc-list {
+                grid-template-columns: 1fr;
+            }
+
+            h2 {
+                font-size: 18px;
+            }
+
+            .contact-box {
+                padding: 20px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">마이약 MyYak</a>
+            <a href="index.html" class="back-btn">
+                <span>&larr;</span> 메인으로
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <div class="hero">
+        <h1>이용약관</h1>
+        <p class="effective-date">시행일: 2024년 12월 31일 | 최종 수정: 2024년 12월 31일</p>
+    </div>
+
+    <!-- Content -->
+    <div class="container">
+        <!-- Notice -->
+        <div class="notice-box">
+            <p>본 약관은 마이약(이하 "서비스")의 이용 조건 및 절차, 회사와 이용자의 권리, 의무 및 책임사항을 규정합니다. 서비스를 이용하시기 전에 본 약관을 주의 깊게 읽어주시기 바랍니다.</p>
+        </div>
+
+        <!-- Table of Contents -->
+        <nav class="toc">
+            <div class="toc-title">목차</div>
+            <ol class="toc-list">
+                <li><a href="#section1">제1조 (목적)</a></li>
+                <li><a href="#section2">제2조 (정의)</a></li>
+                <li><a href="#section3">제3조 (약관의 효력 및 변경)</a></li>
+                <li><a href="#section4">제4조 (서비스의 제공)</a></li>
+                <li><a href="#section5">제5조 (이용계약의 체결)</a></li>
+                <li><a href="#section6">제6조 (회원의 의무)</a></li>
+                <li><a href="#section7">제7조 (서비스 이용의 제한)</a></li>
+                <li><a href="#section8">제8조 (서비스의 변경 및 중단)</a></li>
+                <li><a href="#section9">제9조 (면책조항)</a></li>
+                <li><a href="#section10">제10조 (분쟁 해결)</a></li>
+            </ol>
+        </nav>
+
+        <!-- Sections -->
+        <section id="section1">
+            <h2><span class="number">1</span>제1조 (목적)</h2>
+            <p>본 약관은 마이약(MyYak) 서비스(이하 "서비스")를 제공하는 마이약 팀(이하 "회사")과 서비스를 이용하는 회원(이하 "회원") 간의 권리, 의무 및 책임사항, 기타 필요한 사항을 규정함을 목적으로 합니다.</p>
+        </section>
+
+        <section id="section2">
+            <h2><span class="number">2</span>제2조 (정의)</h2>
+            <p>본 약관에서 사용하는 용어의 정의는 다음과 같습니다.</p>
+            <ol>
+                <li><strong>"서비스"</strong>란 회사가 제공하는 복약 관리, 알림, 영양제 관리 등의 모바일 애플리케이션 서비스를 말합니다.</li>
+                <li><strong>"회원"</strong>이란 본 약관에 동의하고 서비스 이용 계약을 체결한 자를 말합니다.</li>
+                <li><strong>"계정"</strong>이란 회원의 식별과 서비스 이용을 위해 회원이 설정하고 회사가 부여하는 고유한 정보를 말합니다.</li>
+                <li><strong>"콘텐츠"</strong>란 서비스 내에서 회원이 작성, 등록, 저장하는 복약 기록, 알림 설정 등의 정보를 말합니다.</li>
+            </ol>
+        </section>
+
+        <section id="section3">
+            <h2><span class="number">3</span>제3조 (약관의 효력 및 변경)</h2>
+            <ol>
+                <li>본 약관은 서비스 화면에 게시하거나 기타의 방법으로 회원에게 공지함으로써 효력이 발생합니다.</li>
+                <li>회사는 필요한 경우 관련 법령을 위반하지 않는 범위 내에서 본 약관을 변경할 수 있습니다.</li>
+                <li>약관이 변경되는 경우 회사는 변경 내용과 적용일자를 명시하여 서비스 내 또는 이메일을 통해 적용일자 7일 전부터 공지합니다.</li>
+                <li>회원이 변경된 약관에 동의하지 않는 경우 서비스 이용을 중단하고 탈퇴할 수 있습니다. 변경된 약관의 효력 발생일 이후에도 서비스를 계속 이용하는 경우 변경된 약관에 동의한 것으로 봅니다.</li>
+            </ol>
+        </section>
+
+        <section id="section4">
+            <h2><span class="number">4</span>제4조 (서비스의 제공)</h2>
+            <p>회사는 다음과 같은 서비스를 제공합니다.</p>
+            <ul>
+                <li><strong>복약 관리:</strong> 처방약 및 일반의약품의 등록, 복용 일정 관리</li>
+                <li><strong>복약 알림:</strong> 설정된 시간에 복용 알림 제공</li>
+                <li><strong>복약 기록:</strong> 복용 이력 저장 및 조회</li>
+                <li><strong>영양제 관리:</strong> 영양제 등록 및 복용 관리</li>
+                <li><strong>처방전 스캔:</strong> 카메라를 통한 처방전 인식 및 약물 자동 등록</li>
+                <li>기타 회사가 정하는 서비스</li>
+            </ul>
+            <div class="info-box">
+                <p><strong>참고:</strong> 서비스는 의료 전문가의 진단이나 처방을 대체하지 않습니다. 건강에 관한 중요한 결정은 반드시 의료 전문가와 상담하시기 바랍니다.</p>
+            </div>
+        </section>
+
+        <section id="section5">
+            <h2><span class="number">5</span>제5조 (이용계약의 체결)</h2>
+            <ol>
+                <li>이용계약은 회원이 되고자 하는 자가 본 약관에 동의하고 회원가입을 신청하면 회사가 이를 승낙함으로써 체결됩니다.</li>
+                <li>서비스는 카카오 계정을 통한 소셜 로그인 방식으로 가입할 수 있습니다.</li>
+                <li>회사는 다음 각 호에 해당하는 경우 가입을 거부하거나 사후에 이용계약을 해지할 수 있습니다.
+                    <ul>
+                        <li>타인의 정보를 도용한 경우</li>
+                        <li>허위 정보를 기재한 경우</li>
+                        <li>기술적 문제로 서비스 제공이 불가능한 경우</li>
+                        <li>기타 본 약관을 위반하거나 위법, 부당한 이용신청임이 확인된 경우</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section id="section6">
+            <h2><span class="number">6</span>제6조 (회원의 의무)</h2>
+            <p>회원은 다음 각 호의 행위를 하여서는 안 됩니다.</p>
+            <ul>
+                <li>타인의 개인정보를 도용하는 행위</li>
+                <li>서비스의 운영을 고의로 방해하는 행위</li>
+                <li>서비스를 이용하여 법령, 공공질서 또는 미풍양속에 반하는 행위</li>
+                <li>서비스를 이용하여 제3자의 권리를 침해하는 행위</li>
+                <li>서비스를 통해 얻은 정보를 회사의 사전 승낙 없이 서비스 이용 외의 목적으로 복제, 출판, 방송 등에 사용하거나 제3자에게 제공하는 행위</li>
+                <li>회사의 서비스를 부정한 목적으로 사용하는 행위</li>
+            </ul>
+        </section>
+
+        <section id="section7">
+            <h2><span class="number">7</span>제7조 (서비스 이용의 제한)</h2>
+            <ol>
+                <li>회사는 회원이 본 약관의 의무를 위반하거나 서비스의 정상적인 운영을 방해한 경우 서비스 이용을 제한하거나 이용계약을 해지할 수 있습니다.</li>
+                <li>회사는 서비스 이용 제한 시 그 사유와 제한 기간을 회원에게 통지합니다.</li>
+                <li>이용 제한에 대해 이의가 있는 회원은 고객센터를 통해 이의신청을 할 수 있습니다.</li>
+            </ol>
+        </section>
+
+        <section id="section8">
+            <h2><span class="number">8</span>제8조 (서비스의 변경 및 중단)</h2>
+            <ol>
+                <li>회사는 운영상, 기술상의 필요에 따라 서비스의 전부 또는 일부를 변경할 수 있습니다.</li>
+                <li>서비스의 내용, 이용 방법, 이용 시간에 대해 변경이 있는 경우에는 변경사유, 변경 내용 및 제공일자 등을 변경 전에 서비스 내 또는 이메일을 통해 공지합니다.</li>
+                <li>회사는 다음 각 호에 해당하는 경우 서비스의 전부 또는 일부를 제한하거나 중지할 수 있습니다.
+                    <ul>
+                        <li>서비스용 설비의 보수 등 공사로 인한 부득이한 경우</li>
+                        <li>정전, 제반 설비의 장애 또는 이용량의 폭주 등으로 정상적인 서비스 이용에 지장이 있는 경우</li>
+                        <li>천재지변, 국가비상사태 등 불가항력적 사유가 있는 경우</li>
+                    </ul>
+                </li>
+            </ol>
+        </section>
+
+        <section id="section9">
+            <h2><span class="number">9</span>제9조 (면책조항)</h2>
+            <ol>
+                <li>회사는 천재지변 또는 이에 준하는 불가항력으로 인하여 서비스를 제공할 수 없는 경우 서비스 제공에 관한 책임이 면제됩니다.</li>
+                <li>회사는 회원의 귀책사유로 인한 서비스 이용의 장애에 대하여 책임을 지지 않습니다.</li>
+                <li>회사는 회원이 서비스를 이용하여 기대하는 수익을 상실한 것에 대하여 책임을 지지 않습니다.</li>
+                <li><strong>서비스에서 제공하는 약물 정보, 알림 기능 등은 참고용으로 제공되며, 의료적 조언을 대체하지 않습니다.</strong> 회원은 복약 관련 사항에 대해 반드시 의사, 약사 등 의료 전문가와 상담하여야 합니다.</li>
+                <li>회사는 서비스의 오류, 데이터 손실, 알림 미전달 등으로 인해 발생하는 손해에 대해 책임을 지지 않습니다.</li>
+            </ol>
+        </section>
+
+        <section id="section10">
+            <h2><span class="number">10</span>제10조 (분쟁 해결)</h2>
+            <ol>
+                <li>서비스 이용과 관련하여 회사와 회원 사이에 분쟁이 발생한 경우, 회사와 회원은 분쟁의 해결을 위해 성실히 협의합니다.</li>
+                <li>본 약관에서 정하지 아니한 사항과 본 약관의 해석에 관하여는 대한민국 법령 및 관계법령에 따릅니다.</li>
+                <li>서비스 이용으로 발생한 분쟁에 대해 소송이 제기되는 경우 회사의 본사 소재지를 관할하는 법원을 관할 법원으로 합니다.</li>
+            </ol>
+        </section>
+
+        <!-- Contact -->
+        <section>
+            <h2><span class="number">+</span>문의하기</h2>
+            <p>이용약관에 대해 궁금한 점이 있으시면 언제든지 문의해 주세요.</p>
+            <div class="contact-box">
+                <h3>마이약 개발팀</h3>
+                <p>이메일: <a href="mailto:myyak.app@gmail.com">myyak.app@gmail.com</a></p>
+            </div>
+        </section>
+
+        <div class="info-box">
+            <p><strong>공고일:</strong> 2024년 12월 31일</p>
+            <p><strong>시행일:</strong> 2024년 12월 31일</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">마이약 MyYak</div>
+        <p class="footer-text">
+            문의: <a href="mailto:myyak.app@gmail.com">myyak.app@gmail.com</a>
+        </p>
+        <div class="footer-links">
+            <a href="privacy.html">개인정보처리방침</a>
+            <a href="delete-account.html">계정 삭제</a>
+        </div>
+        <p class="footer-text" style="margin-top: 16px;">
+            &copy; 2024 MyYak. All rights reserved.
+        </p>
+    </footer>
+</body>
+</html>
